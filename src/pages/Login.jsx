@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const { signIn } = useAuth();
+  const { signIn,auth,user } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +17,9 @@ const Login = () => {
     try {
       await signIn(email, password);
       toast.success("signIn..");
+      console.log('Auth:', auth.currentUser)
+      console.log('user:', user)
+      sessionStorage.setItem('uid', auth.currentUser.uid)
       navigate("/");
     } catch (e) {
       setErr(true);

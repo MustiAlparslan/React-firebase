@@ -1,12 +1,11 @@
 import React from 'react'
 import {Navigate} from 'react-router-dom'
-import { useAuth } from '../context/authContext'
 
 
 function ProtectedRoute({children}) {
-    const {auth} = useAuth()
+  const user = sessionStorage.getItem('uid')
 
-    if(!auth.currentUser){
+    if(!user){
         return <Navigate  to='/login'/>    
     }
 

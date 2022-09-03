@@ -21,6 +21,7 @@ const Register = () => {
       await upProfile({
         displayName: `${name} ${surname}`,
       });
+      toast.success("Successful");
       navigate("/login");
     } catch (e) {
       toast.error(e.message);

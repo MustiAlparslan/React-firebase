@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useAuth } from "../context/authContext";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
-import { async } from "@firebase/util";
 
 function Profile() {
   const { upProfile, delUser, logout, auth, setUserInfo, upEmail, upPassword } =
@@ -49,6 +48,7 @@ function Profile() {
   const handleSubmit = async () => {
     try {
       await logout();
+      sessionStorage.removeItem('uid')
       navigate("/login");
       toast.success("Logout");
     } catch (e) {

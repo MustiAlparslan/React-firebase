@@ -7,11 +7,14 @@ import {CgProfile} from 'react-icons/cg'
 
 function NavBar() {
     let navigate = useNavigate();
-    const {logout} = useAuth()
+    const {logout, auth, user} = useAuth()
 
     const handleSubmit =  async() => {
         try{
           await logout()
+          console.log('Auth:', auth.currentUser)
+          console.log('user:', user)
+          sessionStorage.removeItem('uid')
           navigate('/login')    
           toast.success('Logout');
         }
